@@ -12,12 +12,39 @@ public:
 	{
 		MStatus status;
 		// <<<your code goes here>>>
-		const char *melString =
-			"window - title \"Hello Maya\";" \
-			"columnLayout - columnAttach \"both\" 50 - rowSpacing 10 - columnWidth 250;" \
-			"text - label \"ljl\";" \
-			"button - label \"OK\";" \
+
+		// Parse the arguments
+		MString name("");
+		int id = 0;
+		for (int i = 0; i < args.length(); i++) {
+			if (MString("-name") == args.asString(i, &status) && MS::kSuccess == status) {
+				MString tmp = args.asString(++i, &status);
+				if (MS::kSuccess == status) {
+					name = tmp;
+				}
+			}
+			else if (MString("-i") == args.asString(i, &status) && MS::kSuccess == status) {
+				int tmp = args.asInt(++i, &status);
+				if (MS::kSuccess == status) {
+					id = tmp;
+				}
+			}
+		}
+
+		// Construct the dialog window
+		MString melString =
+			"window -title \"Hello Maya\";" \
+			"columnLayout -columnAttach \"both\" 50 -rowSpacing 10 -columnWidth 250;" \
+			"text -label \"Name:";
+		melString += name;
+		melString += "\";";
+		melString += "text -label \"ID:";
+		melString += id;
+		melString += "\";";
+		melString +=
+			"button -label \"OK\";" \
 			"showWindow;";
+
 		MGlobal::executeCommand(melString);
 		return status;
 	}

@@ -1,4 +1,5 @@
 ﻿  Source.cpp
+f:\cis660_proj\hellomayaplugin\hellomayaplugin\source.cpp(19): warning C4018: '<': signed/unsigned mismatch
      Creating library F:\CIS660_Proj\HelloMayaPlugin\x64\Debug\HelloMayaPlugin.lib and object F:\CIS660_Proj\HelloMayaPlugin\x64\Debug\HelloMayaPlugin.exp
   HelloMayaPlugin.vcxproj -> F:\CIS660_Proj\HelloMayaPlugin\x64\Debug\HelloMayaPlugin.mll
   HelloMayaPlugin.vcxproj -> F:\CIS660_Proj\HelloMayaPlugin\x64\Debug\HelloMayaPlugin.pdb (Partial PDB)
