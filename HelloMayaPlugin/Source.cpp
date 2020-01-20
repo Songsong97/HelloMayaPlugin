@@ -33,7 +33,13 @@ public:
 
 		// Construct the dialog window
 		MString melString =
-			"window -title \"Hello Maya\";" \
+			"global proc myCloseWindow() {" \
+			"if (`window -exists myWindow`)" \
+			"deleteUI myWindow;" \
+			"}" \
+			"if (!`window -exists myWindow`) {" \
+			"windowPref -remove myWindow;" \
+			"window -title \"Hello Maya\" -minimizeButton false -maximizeButton false myWindow;" \
 			"columnLayout -columnAttach \"both\" 50 -rowSpacing 10 -columnWidth 250;" \
 			"text -label \"Name:";
 		melString += name;
@@ -42,8 +48,9 @@ public:
 		melString += id;
 		melString += "\";";
 		melString +=
-			"button -label \"OK\";" \
-			"showWindow;";
+			"button -label \"OK\" -command \"myCloseWindow();\";" \
+			"}" \
+			"showWindow myWindow;";
 
 		MGlobal::executeCommand(melString);
 		return status;
